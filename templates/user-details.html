@@ -9,12 +9,22 @@
                 <img src="{{user.image_url}}" alt="Profile image for {{user.first_name}} {{user.last_name}}." class="img-fluid m-1 p-1 rounded">
             </div>
             <div class="col-8">
-                <h1 class="h1">{{user.first_name}} {{user.last_name}}</h1>
+                <h1 class="h1 mt-2">{{user.first_name}} {{user.last_name}}</h1>
                 <form>
-                    <button class="btn btn-primary" formaction="/users/{{user.id}}/edit"
+                    <button class="btn btn-sm btn-primary" formaction="/users/{{user.id}}/edit"
                     formmethod="GET" type="submit">Edit</button>
-                    <button class="btn btn-danger" formaction="/users/{{user.id}}/delete"
+                    <button class="btn btn-sm btn-danger" formaction="/users/{{user.id}}/delete"
                     formmethod="POST" type="submit">Delete</button>
+                </form>
+                <h2 class="h2 mt-3">Posts</h2>
+                <ul>
+                    {% for post in user_posts %}
+                        <li><a href='/posts/{{ post.id }}'>{{ post.title }}</a></li>
+                    {% endfor %}
+                </ul>
+                <form>
+                    <button class="btn btn-primary" formaction="/users/{{user.id}}/posts/new"
+                    formmethod="GET" type="submit">Add Post</button>
                 </form>
             </div>
         </div>
