@@ -1,9 +1,10 @@
 """Seed file to make sample data for users db."""
 
-from models import User, Post, db
+from models import User, Post, Tag, PostTag, db
 from app import app
 
 # Create all tables
+db.reflect()
 db.drop_all()
 db.create_all()
 
@@ -41,5 +42,49 @@ db.session.add(h3)
 db.session.add(w1)
 db.session.add(w2)
 db.session.add(w3)
+
+db.session.commit()
+
+#Add tags
+t1 = Tag(name='Thoughtful')
+t2 = Tag(name='Silly')
+t3 = Tag(name='Questionable')
+t4 = Tag(name='Sincere')
+
+db.session.add(t1)
+db.session.add(t2)
+db.session.add(t3)
+db.session.add(t4)
+
+db.session.commit()
+
+#Add posts_tags
+pt1 = PostTag(post_id = '1', tag_id='1')
+pt2 = PostTag(post_id = '1', tag_id='4')
+pt3 = PostTag(post_id = '2', tag_id='1')
+pt4 = PostTag(post_id = '2', tag_id='4')
+pt5 = PostTag(post_id = '3', tag_id='2')
+pt6 = PostTag(post_id = '3', tag_id='3')
+pt7 = PostTag(post_id = '4', tag_id='2')
+pt8 = PostTag(post_id = '5', tag_id='2')
+pt9 = PostTag(post_id = '6', tag_id='1')
+pt10 = PostTag(post_id = '6', tag_id='3')
+pt11 = PostTag(post_id = '7', tag_id='2')
+pt12 = PostTag(post_id = '7', tag_id='3')
+pt13 = PostTag(post_id = '8', tag_id='4')
+
+db.session.add(pt1)
+db.session.add(pt2)
+db.session.add(pt3)
+db.session.add(pt4)
+db.session.add(pt5)
+db.session.add(pt6)
+db.session.add(pt7)
+db.session.add(pt8)
+db.session.add(pt9)
+db.session.add(pt10)
+db.session.add(pt11)
+db.session.add(pt12)
+db.session.add(pt13)
 
 db.session.commit()

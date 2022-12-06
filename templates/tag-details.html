@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ tag.name }} Posts{% endblock title %}
+
+{% block content %}
+<h1 class="h1">{{ tag.name }} Posts</h1>
+<ul>
+    {% for post in tag.posts | sort(attribute='title') %}
+        <li><a href='/posts/{{ post.id }}'>{{ post.title }}</a></li>
+    {% endfor %}
+</ul>
+<form>
+
+    <button class="btn btn-sm btn-primary" formaction="/tags/{{tag.id}}/edit"
+    formmethod="GET" type="submit">Edit</button>
+
+    <button class="btn btn-sm btn-danger" formaction="/tags/{{tag.id}}/delete"
+    formmethod="POST" type="submit">Delete</button>
+
+</form>
+{% endblock content %}

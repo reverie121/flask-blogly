@@ -16,6 +16,11 @@
                 <textarea type="text" class="form-control" name="content" id="content" rows="8" cols="80"></textarea>
             </label>
             <br>
+            <div class="form-check">
+            {% for tag in tags | sort(attribute='name') %}
+                <label for="tag_{{ tag.id }}" class="form-check-label"><input class="form-check-input" type="checkbox" name="tag" id="tag_{{ tag.id }}" value="{{ tag.id }}"> {{ tag.name }}</label><br>
+            {% endfor %}
+            </div>
             <form>
                 <button class="btn btn-danger" formaction="/users/{{user.id}}"
                 formmethod="GET" type="submit">Cancel</button>
